@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #00B3FF;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+		
+		.navbar-left {
+			font-size: 1.2rem;
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.navbar-right {
+			display: flex;
+		    align-items: center;
+		    gap: 1rem;
+		}
+
+        .navbar .username {
+            font-weight: bold;
+        }
+		
+		.logout-button {
+		  	background-color: #80A0FF;
+		    color: white;
+		   	border: none;
+		 	padding: 0.5rem 1rem;
+			border-radius: 5px;
+		    cursor: pointer;
+		}
+        
+        .button {
+		  	background-color: #99CCFF;
+		    color: white;
+		   	border: none;
+		 	padding: 0.5rem 1rem;
+			border-radius: 5px;
+		    cursor: pointer;
+		}
+        
+		.logout-button:hover {
+			background-color: #777;
+		}
+    </style>
+</head>
+<body>
+	<div th:fragment="content">
+    <div class="navbar">
+		
+		<div class="navbar-left">
+	        	<div class="username"><span th:text="${username}"></span></div>
+			</div>
+			<form th:action="@{/commissioner}" method="get">
+						<button type="submit" class="button">Home</button>
+			</form>
+			
+			<form th:action="@{/commissioner/appliedStudents}" method="get">
+						<button type="submit" class="button">Applied Students</button>
+			</form>
+			
+			<form th:action="@{/commissioner/traineeshipsInProgress}" method="get">
+				<button type="submit" class="button">Traineeships in Progress</button>
+			</form>
+			
+		<div class="navbar-right">
+				
+	        <div>Commissioner</div>
+			
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="logout-button">logout</button>
+			</form>
+		
+		</div>
+		</div>
+    </div>
+	
+	<img th:src="@{/uoi-logo.png}" style="width: 100%; height: auto;" />
+
+</body>
+</html>

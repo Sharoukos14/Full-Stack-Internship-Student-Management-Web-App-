@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{company :: head}">
+    <style>
+        .tables-container {
+            display: flex;
+            gap: 50px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{company :: content}"></div>
+
+	<div class="tables-container">
+    
+    <!-- Available Positions -->
+    <div>
+        <h2>Available Positions</h2>
+        <table border="1">
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Description</th>
+                <th>Required Skills</th>
+                <th>Topics</th>
+				
+            </tr>
+            <tr th:each="pos : ${positions}">
+                <td th:text="${pos.startDate}"></td>
+                <td th:text="${pos.endDate}"></td>
+                <td th:text="${pos.jobDescription}"></td>
+               	<td th:text="${#strings.listJoin(pos.requiredSkills, ', ')}"></td>
+                <td th:text="${#strings.listJoin(pos.topicsOfInterest, ', ')}"></td>
+				<td>
+					<form th:action="@{/company/positions/delete/{id}(id=${pos.id})}" method="post">
+						<button type="submit" class="button">Delete</button>
+					</form>
+				</td>  
+            </tr>
+        </table>
+    </div>
+
+    <!-- Filled Positions -->
+    <div>
+        <h2>Filled Positions</h2>
+        <table border="1">
+            <tr>
+				<th>Student Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Description</th>
+                <th>Required Skills</th>
+                <th>Topics</th>
+				<th>Student's Motivation</th>
+				<th>Evaluate Student's Motivation</th>
+				<th>Student's Effectiveness</th>
+				<th>Evaluate Student's Effectivenss</th>
+				<th>Student's Evaluation</th>
+				<th>Evaluate Student's Efficiency</th>
+				
+            </tr>
+            <tr th:each="pos : ${filledPositions}">
+				<td th:text="${pos.studentName}"></td>
+                <td th:text="${pos.startDate}"></td>
+                <td th:text="${pos.endDate}"></td>
+                <td th:text="${pos.jobDescription}"></td>
+                <td th:text="${#strings.listJoin(pos.requiredSkills, ', ')}"></td>
+                <td th:text="${#strings.listJoin(pos.topicsOfInterest, ', ')}"></td>
+				<td th:text="${pos.studentMotivationCompany}"></td>
+				<td>
+					<form th:action="@{/company/positions/rate/motivation/{id}(id=${pos.id})}" method="post">
+								
+								<select name="rate" id="rate">
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								</select>
+						        <button type="submit" class="button">Rate</button>
+					</form>
+				</td>  
+				<td th:text="${pos.studentEffectivenessCompany}"></td>
+				<td>
+					<form th:action="@{/company/positions/rate/effectiveness/{id}(id=${pos.id})}" method="post">
+												
+						<select name="rate" id="rate">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<button type="submit" class="button">Rate</button>
+					</form>
+				</td>       
+				<td th:text="${pos.studentEfficiencyCompany}"></td>
+				<td>
+					<form th:action="@{/company/positions/rate/efficiency/{id}(id=${pos.id})}" method="post">
+						<select name="rate" id="rate">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<button type="submit" class="button">Rate</button>
+					</form>
+				</td>            
+				      
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commissioner :: head}"></head>
+<body>
+	
+	<div th:replace="~{commissioner :: content}">
+	       
+	</div>
+	<div>
+	        <h2>Filled Positions</h2>
+	        <table border="1">
+	            <tr>
+					<th>Student Name</th>
+					<th>Company Name</th>
+					<th>Professor Name</th>
+	                <th>Start Date</th>
+	                <th>End Date</th>
+	                <th>Description</th>
+	                <th>Required Skills</th>
+	                <th>Topics</th>
+					<th>Location</th>
+					<th>View Traineeship</th>
+					<th>Allocate Professor</th>
+					
+					
+	            </tr>
+	            <tr th:each="pos : ${filledPositions}">
+					<td th:text="${pos.studentName}"></td>
+					<td th:text="${pos.CompanyName}"></td>
+					<td th:text="${pos.professorName}"></td>
+	                <td th:text="${pos.startDate}"></td>
+	                <td th:text="${pos.endDate}"></td>
+	                <td th:text="${pos.jobDescription}"></td>
+	                <td th:text="${pos.requiredSkills}"></td>
+	                <td th:text="${pos.topicsOfInterest}"></td>
+					<td th:text="${pos.location}"></td>
+					<td>
+						<form th:action="@{/commissioner/traineeshipsInProgress/view/{id}(id=${pos.id})}" method="post">
+							<button type="submit" class="button" style="padding:1rem 3rem ">View</button>
+						</form>	
+					</td>
+					<td>
+						<form th:action="@{/commissioner/traineeshipsInProgress/allocateInterests/{id}(id=${pos.id})}" method="post">
+							<button type="submit" class="button">Based On Interests</button>
+						</form>
+						<form th:action="@{/commissioner/traineeshipsInProgress/allocateLoad/{id}(id=${pos.id})}" method="post">
+							<button type="submit" class="button" style="padding=0.5rem 5rem;">Based On Load</button>
+						</form>		
+					</td>    
+					      
+	            </tr>
+	        </table>
+	    </div>
+</body>
+</html>

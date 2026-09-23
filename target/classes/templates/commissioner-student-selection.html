@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commissioner :: head}"></head>
+<body>
+	
+	<div th:replace="~{commissioner :: content}">
+	       
+	</div>
+	<div>
+	        <h2>Student</h2>
+	        <table border="1">
+	            <tr>
+	                <th>Student Name</th>
+	                <th>University ID</th>
+	                <th>Student's Interests</th>
+	                <th>Student's Skills</th>
+	                <th>Preffered Location</th>
+					
+					
+	            </tr>
+	            <tr th:each="std : ${student}">
+	                <td th:text="${std.studentName}"></td>
+	                <td th:text="${std.studentUniId}"></td>
+					<td th:text="${std.studentInterests}"></td>
+	               	<td th:text="${std.studentSkills}"></td>
+	                <td th:text="${std.studentPrefLocation}"></td>
+					  
+	            </tr>
+	        </table>
+			
+			<h2>Positions Available For Student</h2>
+			<table border="1">
+				<tr>
+					<th>Company Name</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Job Description</th>
+					<th>Topics Of Interest</th>
+					<th>Required Skills</th>
+					<th>Location</th>
+					<th>Assign</th>
+				</tr>
+				<tr th:each="pos : ${positions}">
+					<td th:text="${pos.companyName}"></td>
+					<td th:text="${pos.startDate}"></td>
+					<td th:text="${pos.endDate}"></td>
+					<td th:text="${pos.jobDescription}"></td>
+					<td th:text="${pos.topicsOfInterest}"></td>
+					<td th:text="${pos.requiredSkills}"></td>
+					<td th:text="${pos.location}"></td>
+					<td>
+						<form th:action="@{/commissioner/select/assign/{id}(id=${pos.id})}" method="post">
+							<input type="hidden" name="username" th:value="${student.username}" />
+							<button type="submit" class="button">Assign</button>
+						</form>	
+					</td>  
+				</tr>
+			</table>
+	    </div>
+</body>
+</html>
