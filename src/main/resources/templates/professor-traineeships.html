@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{professor :: head}">
+	    <style>
+	        .tables-container {
+	            display: flex;
+	            gap: 50px;
+	        }
+	        table {
+	            border-collapse: collapse;
+	        }
+	        th, td {
+	            padding: 5px 10px;
+	        }
+	    </style>
+	</head>
+<body>
+	
+	<div th:replace="~{professor :: content}">
+	       
+	</div>
+	<div>
+	        <h2>My Traineeships</h2>
+	        <table border="1">
+	            <tr>
+					<th>Student Name</th>
+					<th>Company Name</th>
+	                <th>Start Date</th>
+	                <th>End Date</th>
+	                <th>Description</th>
+	                <th>Required Skills</th>
+					<th>Topics</th>
+	                <th>Student's Motivation</th>
+					<th>Rate Student's Motivation</th>
+					<th>Student's Effectiveness</th>
+					<th>Rate Student's Effectivenes</th>
+					<th>Student's Efficiency</th>
+					<th>Rate Student's Efficiency</th>
+					<th>Company's Facilities</th>
+					<th>Rate Company's Facilities</th>
+					<th>Company's Guidance</th>
+					<th>Rate Company's' Guidance</th>
+					
+	            </tr>
+	            <tr th:each="pos : ${traineeships}">
+					<td th:text="${pos.studentName}"></td>
+					<td th:text="${pos.CompanyName}"></td>					
+	                <td th:text="${pos.startDate}"></td>
+	                <td th:text="${pos.endDate}"></td>
+	                <td th:text="${pos.jobDescription}"></td>
+	                <td th:text="${#strings.listJoin(pos.requiredSkills, ', ')}"></td>
+	                <td th:text="${#strings.listJoin(pos.topicsOfInterest, ', ')}"></td>
+					<td th:text="${pos.studentMotivationProfessor}"></td>
+					<td>
+						<form th:action="@{/professor/myTraineeships/rate/motivation/{id}(id=${pos.id})}" method="post">
+							<select name="rate" id="rate">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<button type="submit" class="button">Rate</button>
+						</form>
+					</td>            											
+					<td th:text="${pos.studentEffectivenessProfessor}"></td>
+					<td>
+						<form th:action="@{/professor/myTraineeships/rate/effectiveness/{id}(id=${pos.id})}" method="post">
+							<select name="rate" id="rate">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<button type="submit" class="button">Rate</button>
+						</form>
+					</td>     
+					<td th:text="${pos.studentEfficiencyProfessor}"></td>
+					<td>
+						<form th:action="@{/professor/myTraineeships/rate/efficiency/{id}(id=${pos.id})}" method="post">
+							<select name="rate" id="rate">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<button type="submit" class="button">Rate</button>
+						</form>
+					</td>     
+					<td th:text="${pos.companyFacilitiesProfessor}"></td>
+					<td>
+						<form th:action="@{/professor/myTraineeships/rate/facilities/{id}(id=${pos.id})}" method="post">
+							<select name="rate" id="rate">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<button type="submit" class="button">Rate</button>
+						</form>
+					</td>     
+					<td th:text="${pos.companyGuidanceProfessor}"></td>
+					<td>
+						<form th:action="@{/professor/myTraineeships/rate/guidance/{id}(id=${pos.id})}" method="post">
+							<select name="rate" id="rate">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<button type="submit" class="button">Rate</button>
+						</form>
+					</td>     
+					      
+	            </tr>
+	        </table>
+	    </div>
+</body>
+</html>

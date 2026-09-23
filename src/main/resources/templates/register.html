@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Welcome</title>
+	<style>
+	        body {
+	            margin: 0;
+	            font-family: Arial, sans-serif;
+	        }
+
+	        .navbar {
+	            background-color: #00B3FF;
+	            color: white;
+	            padding:1rem;
+	            display: flex;
+	            justify-content: space-between;
+	              
+	        }
+	        
+	        .navbar-right {
+				display: flex;
+			    align-items: center;
+			    gap: 1rem;
+			}
+	        .navbar-left {
+				display: flex;
+			    align-items: center;
+			    gap: 1rem;
+			}
+			
+			.login-button {
+					  	background-color: #80A0FF;
+					    color: white;
+					   	border: none;
+					 	padding: 0.5rem 1rem;
+						border-radius: 5px;
+					    cursor: pointer;
+					}
+			
+	        
+	        .button {
+			  	background-color: #99CCFF;
+			    color: white;
+			   	border: none;
+			 	padding: 0.2rem 1rem;
+				border-radius: 5px;
+			    cursor: pointer;
+			}
+	        
+			.button:hover {
+				background-color: #777;
+			}
+	</style>
+</head>
+<body>
+	<div class = "navbar">
+		<div class = "navbar-left">
+		    <h3>Register</h3>
+		
+		    <form th:action="@{/register}" method="post">
+		        <p><input type="text" name="username" placeholder="Username" required />
+                <input type="password" name="password" placeholder="Password" required />
+                
+		
+				<label for="role">Your role:</label>
+		
+				<select name="role" id="role">
+				  <option value="ROLE_STUDENT">STUDENT</option>
+				  <option value="ROLE_COMPANY">COMPANY</option>
+				  <option value="ROLE_PROFESSOR">PROFESSOR</option>
+				  <option value="ROLE_COMMISSIONER">COMMISIONER</option>
+				</select>
+		        <button type="submit" class="button">Register</button>
+		    </form>
+		</div>
+		<div class = navbar-right>
+		    <form th:action="@{/login}" method="get">
+				<button type="submit" class="login-button">Login</button>
+			</form>
+		</div>
+	</div>
+	<img th:src="@{/uoi-logo.png}" style="width: 100%; height: auto;" />
+</body>
+</html>

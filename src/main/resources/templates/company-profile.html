@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{company :: head}"></head>
+<body>
+	
+	<div th:replace="~{company :: content}">
+		
+		
+	</div>
+    
+	<h1> Company name: <span th:text="${companyName}"></span> </h1>
+    <h1> Location: <span th:text="${companyLocation}"></span> </h1>
+	
+	<form th:action="@{/company/profile/edit}" method="get">
+			<button type="submit" class = "button" style="position: absolute; right: 180px; top:17px;"   >Edit Profile</button>
+	</form>
+	
+	<img th:src="@{/uoi-logo.png}" style="width: 100%; height: auto;" />
+</body>
+</html>

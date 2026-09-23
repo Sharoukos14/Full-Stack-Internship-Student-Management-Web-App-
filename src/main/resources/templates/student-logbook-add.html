@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{student :: head}"></head>
+<body>
+	
+	<div th:replace="~{student :: content}">
+		
+		
+	</div>
+   
+	
+	
+
+		<h2>Update Your Logbook</h2>
+		<form th:action="@{/student/logbook/add}" method="post">
+		    <textarea name="adder" rows="10" style="width:500px; height:200px;"></textarea>
+		    <button type="submit" class="button">Update</button>
+		</form>
+
+		
+	
+	<img th:src="@{/uoi-logo.png}" style="width: 100%; height: auto;" />
+</body>
+</html>

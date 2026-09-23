@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commissioner :: head}">
+	  
+</head>
+<body>
+	
+	<div th:replace="~{commissioner :: content}">
+	       
+	</div>
+	<div>
+	        <h2>Available Positions</h2>
+	        <table border="1">
+	            <tr>
+	                <th>Student Name</th>
+	                <th>University ID</th>
+	                <th>Student's Interests</th>
+	                <th>Student's Skills</th>
+	                <th>Preffered Location</th>
+					<th>Search Traineeships</th>
+					
+	            </tr>
+	            <tr th:each="std : ${students}">
+	                <td th:text="${std.studentName}"></td>
+	                <td th:text="${std.studentUniId}"></td>
+					<td th:text="${std.studentInterests}"></td>
+	               	<td th:text="${std.studentSkills}"></td>
+	                <td th:text="${std.studentPrefLocation}"></td>
+					<td>
+						<form th:action="@{/commissioner/select/interests/{id}(id=${std.username})}" method="post">
+							 <button type="submit" class="button" style="Padding:0.5rem 2.15rem">Based on Interests</button>
+						</form>
+						<form th:action="@{/commissioner/select/location/{id}(id=${std.username})}" method="post">
+							<button type="submit" class="button" style="Padding:0.5rem 2.15rem">Based on Location</button>
+						</form>
+						<form th:action="@{/commissioner/select/both/{id}(id=${std.username})}" method="post">
+							<button type="submit" class="button" style="Padding:0.5rem 2.8rem">Based on Both</button>
+						</form>						
+					</td>  
+	            </tr>
+	        </table>
+	    </div>
+</body>
+</html>

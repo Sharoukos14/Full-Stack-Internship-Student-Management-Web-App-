@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{student :: head}"></head>
+<body>
+	
+	<div th:replace="~{student :: content}">
+		
+		
+	</div>
+    
+	<h1>Name: <span th:text="${studentName}"></span> </h1>
+    <h1>University ID: <span th:text="${uniId}"></span> </h1>
+	<h1>Interests: <span th:text="${interests}"></span> </h1>
+	<h1>Skills: <span th:text="${skills}"></span> </h1>
+	<h1>Preffered Location: <span th:text="${location}"></span> </h1>
+	<form th:action="@{/student/profile/edit}" method="get">
+			<button type="submit" class = "button" style="position: absolute; right: 330px; top:17px;"   >Edit Profile</button>
+	</form>
+	
+	<img th:src="@{/uoi-logo.png}" style="width: 100%; height: auto;" />
+</body>
+</html>

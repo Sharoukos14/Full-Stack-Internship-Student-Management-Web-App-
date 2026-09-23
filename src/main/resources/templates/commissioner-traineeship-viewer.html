@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commissioner :: head}"></head>
+<body>
+	
+	<div th:replace="~{commissioner :: content}">
+	       
+	</div>
+	<div>
+	        <h2>Traineeship</h2>
+	        <table border="1">
+	            <tr>
+					<th>Student Name</th>
+					<th>Company Name</th>
+					<th>Professor Name</th>
+	                <th>Start Date</th>
+	                <th>End Date</th>
+	                <th>Description</th>
+	                <th>Required Skills</th>
+	                <th>Topics</th>
+					<th>Location</th>
+					<th>Commissioner Rate</th>
+					<th>Rate Traineeship</th>
+					
+					
+	            </tr>
+	            <tr th:each="pos : ${filledPosition}">
+					<td th:text="${pos.studentName}"></td>
+					<td th:text="${pos.CompanyName}"></td>
+					<td th:text="${pos.professorName}"></td>
+	                <td th:text="${pos.startDate}"></td>
+	                <td th:text="${pos.endDate}"></td>
+	                <td th:text="${pos.jobDescription}"></td>
+	                <td th:text="${pos.requiredSkills}"></td>
+	                <td th:text="${pos.topicsOfInterest}"></td>
+					<td th:text="${pos.location}"></td>
+					<td th:text="${pos.rate}"></td>
+					<td>
+						<form th:action="@{/commissioner/traineeshipsInProgress/rate/{id}(id=${pos.id})}" method="post">											
+							<select name="rate" id="rate">
+								<option value="1">Pass</option>
+								<option value="2">Fail</option>
+							</select>
+							<button type="submit" class="button">Rate</button>
+						</form>
+					</td>       
+					      
+	            </tr>
+	        </table>
+	    </div>
+		
+		<div>
+			        <h2>Company's Evaluation</h2>
+			        <table border="1">
+			            <tr>
+							<th>Motivation</th>
+							<th>Effectiveness</th>
+							<th>Efficiency</th>
+			            </tr>
+			            <tr th:each="pos : ${filledPosition}">
+							<td th:text="${pos.studentMotivationCompany}"></td>
+							<td th:text="${pos.studentEffectivenessCompany}"></td>
+							<td th:text="${pos.studentEfficiencyCompany}"></td>
+			            </tr>
+			        </table>
+			    </div>
+				<div>
+					<h2>Professor's Evaluation to Student</h2>
+					<table border="1">
+						<tr>
+							<th>Motivation</th>
+							<th>Effectiveness</th>
+							<th>Efficiency</th>
+						</tr>
+						<tr th:each="pos : ${filledPosition}">
+							<td th:text="${pos.studentMotivationProfessor}"></td>
+							<td th:text="${pos.studentEffectivenessProfessor}"></td>
+							<td th:text="${pos.studentEfficiencyProfessor}"></td>
+						</tr>
+					</table>
+				 </div>
+				 
+				 <div>
+				 	<h2>Professor's Evaluation to Company</h2>
+				 	<table border="1">
+				 		<tr>
+				 			<th>Facilities</th>
+				 			<th>Guidance</th>
+				 		</tr>
+				 		<tr th:each="pos : ${filledPosition}">
+				 			<td th:text="${pos.companyFacilitiesProfessor}"></td>
+				 			<td th:text="${pos.companyGuidanceProfessor}"></td>
+				 		</tr>
+				 	</table>
+				 </div>
+				
+</body>
+</html>

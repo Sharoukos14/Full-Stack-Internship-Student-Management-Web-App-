@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{company :: head}"></head>
+<body>
+	
+	<div th:replace="~{company :: content}">
+		
+		
+	</div>
+   
+	
+	<form th:action="@{/company/makePositions}" method="post">
+	
+				        <p><input type="text" name="startDate" placeholder="Start Date" required />
+		                <input type="text" name="endDate" placeholder="End Date" required />
+						<input type="text" name="jobDescription" placeholder="Job Description" required />
+						<input type="text" name="requiredSkills" placeholder="Skills Required" required />	
+						<input type="text" name="topicsOfInterest" placeholder="Topics Of Interest" required />				
+						<button type="submit" class="button">Make Position</button></p>
+	</form>
+	
+	<img th:src="@{/uoi-logo.png}" style="width: 100%; height: auto;" />
+</body>
+</html>

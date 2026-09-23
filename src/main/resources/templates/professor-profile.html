@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{professor :: head}"></head>
+<body>
+	
+	<div th:replace="~{professor :: content}">
+	       
+	</div>
+	</div>
+	    
+		<h1> Professor Name: <span th:text="${professorName}"></span> </h1>
+	    <h1> Interests: <span th:text="${professorInterests}"></span> </h1>
+		
+		<form th:action="@{/professor/profile/edit}" method="get">
+				<button type="submit" class = "button" style="position: absolute; right: 180px; top:17px;"   >Edit Profile</button>
+		</form>
+		
+		<img th:src="@{/uoi-logo.png}" style="width: 100%; height: auto;" />
+</body>
+</html>
